@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: MQLib
+Version: 0.1
+Summary: Heuristics for the Max-cut and QUBO combinatorial optimization problems
+Home-page: https://github.com/MQLib/MQLib
+Author: Iain Dunning, Swati Gupta, and John Silberholz
+Author-email: john.silberholz@gmail.com
+License: UNKNOWN
+Description: 
+        Python interface to the MQLib, a C++ library of heuristics for Max-Cut
+        and Quadratic Unconstrained Binary Optimization (QUBO). Also includes a
+        hyperheuristic, which uses machine learning to predict the best-performing
+        heuristic for a given problem instance and then runs that heuristic.
+        
+        This library and the related systematic heuristic evaluation strategy are described in [the paper](https://github.com/MQLib/MQLib/blob/master/paper/SECM_final.pdf). To cite the MQLib, please use:
+        ```
+        @article{DunningEtAl2018,
+          title={What Works Best When? A Systematic Evaluation of Heuristics for Max-Cut and {QUBO}},
+          author={Dunning, Iain and Gupta, Swati and Silberholz, John},
+          year={2018},
+          journal={{INFORMS} Journal on Computing},
+          volume={30},
+          number={3}
+        }
+        ```
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: C++
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
