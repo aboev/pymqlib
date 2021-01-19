@@ -1,2 +1,0 @@
-MQLib
-_MQLib
