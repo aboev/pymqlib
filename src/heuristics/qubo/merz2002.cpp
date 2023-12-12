@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <limits>
 #include "heuristics/qubo/merz2002.h"
 #include "util/random.h"
 
@@ -81,11 +82,11 @@ void Merz2002QUBOSolution::KOpt() {
 	  bestDW = diff_weights_[i];
 	}
       }
-      
+
       // Perform the 1-flip and update inC
       UpdateCutValues(bestPos);
       inC[bestPos] = false;
-      
+
       // If we have improved over best with this flip, update best and improved.
       if (ImprovesOver(best)) {
 	best = *this;
