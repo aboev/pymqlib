@@ -34,7 +34,7 @@ class GraphMetrics {
   const MaxCutInstance& mi_;
 
   // Helper functions
-  static double GetTime(const struct timeval& start);
+  static double GetTime(const clock_t& start);
   static void GetSummary(const std::vector<double>& data,
                          std::vector<double>* output);
   static double Normalize(std::vector<double>* x);

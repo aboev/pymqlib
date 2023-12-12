@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <algorithm>
 #include <iostream>
+#include <limits>
 #include <vector>
 #include "heuristics/qubo/glover2010.h"
 #include "util/random.h"
@@ -190,10 +191,10 @@ Glover2010::Glover2010(const QUBOInstance& qi, double runtime_limit,
     // maintained by Glover2010Elite)
     Glover2010Elite elite(qi, R);
     std::vector<int> FlipFreq;
-    
+
     // Alg 1 Step 4: Initialize S0 to a random solution
     Glover2010QUBOSolution S0 = QUBOSolution::RandomSolution(qi, this);
-    
+
     // Alg 1 Steps 5-14: Loop until R elite solutions are added (break was added
     // within the loop after the call to AddSolution().
     while (Runtime() - start <= limit) {
@@ -201,23 +202,23 @@ Glover2010::Glover2010(const QUBOInstance& qi, double runtime_limit,
       // S*, which appears in the paper). FlipFreq will be modified by the tabu
       // search function as it operates.
       S0.TabuSearch(&FlipFreq);
-      
+
       // Check termination criterion for algorithm
       if (!Report(S0)) {
         return;  // Out of time
       }
-      
+
       // Alg 1 Steps 7-11: Insert S0 into the elite set unless it's already
       // there.
       elite.AddSolution(S0);
-      
+
       // Break the loop if we just reached size R for the elite set (in the
       // pseudocode they do steps 12-13 before breaking, but this is repeated
       // again in steps 16-17, so it's just wasted effort.
       if (elite.size() == R) {
         break;
       }
-      
+
       // Alg 1 Steps 12-13: Construct a new S0 as the perturbation operator
       // applied to a randomly selected elite solution
       S0 = Glover2010QUBOSolution::PerturbationOperator(elite.RandomSolution(),
@@ -234,17 +235,17 @@ Glover2010::Glover2010(const QUBOInstance& qi, double runtime_limit,
                                                         elite.get_freq(),
                                                         elite.size(),
                                                         FlipFreq);
-      
+
       // Alg 1 Step 18: Call tabu search on S0 (we'll keep the name S0 instead of
       // S*, which appears in the paper). FlipFreq will be modified by the tabu
       // search function as it operates.
       S0.TabuSearch(&FlipFreq);
-      
+
       // Check termination criterion for algorithm
       if (!Report(S0)) {
         return;  // Out of time
       }
-      
+
       // Alg 1 Steps 19-23: Insert S0 into the elite set if it's not already there
       // and it improves on the worst solution in the elite set
       elite.AddSolution(S0);

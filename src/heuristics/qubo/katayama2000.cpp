@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <limits>
 #include "heuristics/qubo/katayama2000.h"
 #include "util/random.h"
 
@@ -179,7 +180,7 @@ void Katayama2000Elite::Update(const std::vector<Katayama2000QUBOSolution>& x) {
     if (!match) {
       P_.push_back(combined[i]);
     }
-    
+
     if (P_.size() == PS_) {
       break;  // We have selected the maximum number of elements
     }

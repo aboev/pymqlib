@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <limits>
 #include "heuristics/qubo/merz2004.h"
 #include "util/random.h"
 
@@ -139,7 +140,7 @@ void Merz2004Solution::RandomizedKOpt() {
 void Merz2004Solution::Mutate() {
   // Parameters
   int numFlip = N_ / 3;
-  
+
   // Randomly select the numFlip indices to flip
   std::vector<int> toflip;
   for (int i=0; i < N_; ++i) {
@@ -193,7 +194,7 @@ void Merz2004Elite::SelectNonDuplicated(std::vector<Merz2004Solution>* x) {
     if (!match) {
       P_.push_back((*x)[i]);
     }
-    
+
     if (P_.size() == PS_) {
       break;  // We have selected all the elements
     }

@@ -9,14 +9,12 @@ Heuristic::Heuristic(double runtime_limit, bool validation) :
   validation_(validation),
   best_(0.0),
   runtime_limit_(runtime_limit) {
-  gettimeofday(&start_time_, 0);
+  start_time_ = clock();
 }
 
 double Heuristic::Runtime() {
-  struct timeval tv;
-  gettimeofday(&tv, 0);
-  double secs = (tv.tv_sec - start_time_.tv_sec) + 0.000001 *
-    (tv.tv_usec - start_time_.tv_usec);
+  clock_t tv = clock();
+  double secs = (double)(tv - start_time_) / CLOCKS_PER_SEC;
   return secs;
 }
 
