@@ -34,7 +34,7 @@ setup(name = "MQLib",
                                extra_compile_args=['-std=c++0x', '-O2'])],
       packages = ["MQLib"],
       package_data = {"": ["**/*.rf"]},
-      install_requires = ['numpy', 'scipy', 'networkx'],
+      install_requires = ['numpy', 'scipy', 'networkx==2.4'],
       python_requires='>=3.5',
       classifiers = [
           "Development Status :: 3 - Alpha",
